@@ -1,7 +1,39 @@
 $font-size: 1rem;
 $font-color: lch(53 140 40);
+$path-color: rgb(192, 110, 46);
 
 html {
   font-size: $font-size;
   color: $font-color;
+}
+
+#row {
+  height: 73px;
+  display: flex;
+  flex-direction: row;
+}
+
+#ground {
+  height: 73px;
+  width: 73px;
+  border: 1px solid rgb(3, 98, 3);
+  opacity: 1;
+  background-color: rgb(16, 181, 16);
+}
+
+#path {
+  height: 75px;
+  width: 75px;
+  opacity: 1;
+  background-color: $path-color;
+}
+
+#board {
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 1125px;
+  height: 1125px;
+  margin: auto;
 }

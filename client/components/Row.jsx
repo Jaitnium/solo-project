@@ -24,7 +24,7 @@ const Row = (props) => {
     }
 
     return (
-        <div id="row">{cells}</div>
+        <div id={props.rowID} class="row">{cells}</div>
     )
 }
 

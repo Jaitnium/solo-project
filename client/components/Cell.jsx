@@ -6,10 +6,10 @@ const Cell = (props) => {
     let cell = [];
     //console.log('cell:', props.cellID, 'isPath?', props.isPath);
     if(props.isPath) {
-        cell.push(<div id="path"></div>)
+        cell.push(<div id={props.cellID} class="path"></div>)
     }
     else {
-        cell.push(<div id="ground"></div>);
+        cell.push(<div id={props.cellID} class="ground"></div>);
     }
     //<div id="ground"></div>
     //<div id="ground"></div>

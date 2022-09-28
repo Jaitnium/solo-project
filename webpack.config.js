@@ -7,12 +7,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // Remove/clean build folders
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpack = require('webpack')
 // babel-loader - Transpile files with Babel and webpack.
 // @babel/core - Transpile ES2015+ to backwards compatible JavaScript
 // @babel/preset-env - Smart defaults for Babel
 // @babel/plugin-proposal-class-properties - An example of a custom Babel config (use properties directly on a class)
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   // what file or files webpack will look at to compile
   entry: {
     main: path.resolve(__dirname, './client/index.js'),
@@ -21,6 +23,16 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js'
+  },
+  devServer: {
+    static: {
+        publicPath: '/build',
+        directory: path.join(__dirname, "./")
+      },
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
   },
   module: {
     rules: [
@@ -38,7 +50,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    // Only update what has changed on hot reload
+    new webpack.HotModuleReplacementPlugin(),
     // Creates index.html in /build with bundle.js loaded into it
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',

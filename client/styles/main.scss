@@ -1,5 +1,5 @@
 $font-size: 1rem;
-$font-color: lch(53 140 40);
+$font-color: black;
 $path-color: rgb(192, 110, 46);
 
 html {
@@ -30,8 +30,8 @@ html {
 
 #container {
   position: relative;
-  z-index: 0;
   width: 100%;
+  height: 730px;
 }
 
 #board {
@@ -50,4 +50,25 @@ html {
   text-align: center;
   width: 1125px;
   z-index: 4;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  width: 725px;
+  padding: 5px;
+  padding-left: 20px;
+  background-color: lightgray;
+}
+
+text {
+  padding: 5px;
+}
+
+input {
+  padding: 5px;
+  width: 600px;
+  margin-left: 40px;
 }

@@ -1,0 +1,6 @@
+{
+    "circle": {
+        "text": "I want to be round!",
+        "passing_condition": ["/\\s*border-radius:\\s*[5-9][0-9]%\\s*;?/"]
+    }
+}

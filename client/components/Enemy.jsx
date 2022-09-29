@@ -7,12 +7,15 @@ class Enemy extends Component {
     constructor(props) {
         //destination starts at spawn
         super(props);
+
         this.path = props.enemyData.path;
         this.tickRate = props.enemyData.tickRate;
         this.enemyID = props.enemyID;
         // Enemy invokes this function to tell App gameloop player took damage
         this.damageTaken = props.enemyData.damageTaken;
         this.despawnEnemy = props.enemyData.despawnEnemy;
+
+        this.enemyType = props.enemyType;
 
         this.state = {
             index : 0, // which path node I'm on
@@ -25,6 +28,15 @@ class Enemy extends Component {
     componentDidMount() {
 
         this.timerID = setInterval(() => this.tick(), this.tickRate);
+
+        // SET ENEMY DEFEAT INSTRUCTIONS HERE!
+        let enemyEle = document.getElementById('enemy' + this.enemyID);
+        // console.log('keys:', Object.keys(this.enemyType))
+        // console.log('values:', Object.values(this.enemyType))
+        // let challengeType = this.enemyType[0];
+        // console.log('key 1:', )
+
+        enemyEle.innerText = this.enemyType[1].text;
 
         this.move();
         // let destination = this.calculateDestination(this.state.spawn);
@@ -98,10 +110,10 @@ class Enemy extends Component {
     render() {
         const { render } = this.state;
         if(render === false) {
-            console.log('NO RENDER!');
+            console.log('NO RENDER!:', this.enemyID);
             return null;
         }
-        return <div id={'enemy' + this.enemyID} class='squares' style={this.state.styles}></div>;
+        return <div key={this.enemyID} id={'enemy' + this.enemyID} class='squares' style={this.state.styles}></div>;
     }
 }
 

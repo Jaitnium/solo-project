@@ -1,45 +1,56 @@
 import React, { Component } from 'react';
 import '../styles/main.scss'
 import Board from './Board.jsx';
-import EnemySpawner from '../enemy_spawner';
+//import {instance as enemySpawner} from './Enemies.jsx';
+import Enemies from './enemy_spawner.jsx';
+import ReactDOM from 'react-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.tickRate = 1000;
-    this.path = [[1, 0], [1, 1], [1, 2], [2, 2], [3, 2], [3, 3], [3, 4], [3, 5], [2, 5], [1, 5], [1, 6], [1, 7],
-    [2, 7], [3, 7], [4, 7], [5, 7], [5, 6], [5, 5], [5, 4], [5, 3], [6, 3], [7, 3], [7, 4], [7, 5], [7, 6],
-    [7, 7], [7, 8], [7, 9], [6, 9], [6, 10], [5, 10], [4, 10], [3, 10], [2, 10], [2, 11], [2, 12], [2, 13],
-    [3, 13], [4, 13], [4, 12], [5, 12], [6, 12], [7, 12], [7, 13], [8, 13], [8, 14]];
+    this.path = [[1, 0], [1, 1], [1, 2], [2, 2], [3, 2], [3, 3], [3, 4], [2, 4], [1, 4], 
+    [1, 5], [1, 6], [2, 6], [2, 7], [3, 7], [3, 8], [4, 8], [5, 8], [6, 8], [6, 7],
+    [6, 6], [5, 6], [5, 5], [5, 4], [5, 3], [6, 3], [6, 2], [7, 2], [8, 2], [8, 3], 
+    [8, 4], [8, 5], [8, 6], [8, 7], [8, 8], [9, 8]];
+
     // Initial board state here
     this.state = {
       level : 1,
-      enemySpawner : new EnemySpawner(this.tickRate, this.path)
+      enemyData : {
+        tickRate : 1000, // How fast enemies move
+        spawnRate : 4000, // How rapidly enemies spawn
+        path : this.path, 
+        damageTaken : this.damageTaken.bind(this),
+      },
     };
   }
 
   componentDidMount() {
-    this.gameLoop();
-    this.timerID = setInterval(() => this.gameLoop(), this.tickRate);
+    // this.gameLoop();
+    // this.timerID = setInterval(() => this.gameLoop(), this.state.enemyData.spawnRate);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  gameLoop() {
-    // Spawn an enemy, update enemies array, setState lets children know of prop value change
-    this.setState({
-      enemies: this.state.enemySpawner.spawnEnemy()
-    });
-    // Spawn any available enemies
-    //enemies.spawnEnemy();
+  damageTaken(enemyID) {
+    console.log('OUCH THAT HURT!');
+    // let toRemove = document.getElementById('enemy' + enemyID);
+    // unmountComponentAtNode(toRemove);
+    // toRemove.remove();
+
+    // this.setState({
+    //   enemies: this.state.enemySpawner.despawnEnemy(enemyID)
+    // });
   }
 
   render() {
-
     return (
-      <Board totalRows = {10} totalColumns = {15} path = {this.path} enemies = {this.state.enemies}/>
+      <div id="container">
+        <Board totalRows={10} totalColumns={10} path={this.path} />
+        <Enemies enemyData={this.state.enemyData}/>
+      </div>
     );
   }
 }

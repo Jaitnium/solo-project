@@ -12,21 +12,12 @@ class Board extends Component  {
         let rows = [];
         for (let i = 0; i < this.props.totalRows; i++) {
             rows.push(< Row rowID={i} totalColumns={this.props.totalColumns} path={this.props.path} />);
-        }
-        console.log('Board:', this.props.enemies);
-        //{enemies}
-        //                <div id="enemiesContainer">
-        //</div>
-        return (
-            <div>
-                <div id="board">
-                    {rows}
-                    <div id="enemies">
-                        {this.props.enemies}
-                    </div>
-                </div>
-            </div>
+        }       
 
+        return (
+            <div id="board">
+                {rows}
+            </div>
         )
     }
 }

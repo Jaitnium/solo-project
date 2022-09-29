@@ -7,23 +7,24 @@ class Enemy extends Component {
     constructor(props) {
         //destination starts at spawn
         super(props);
-        this.path = this.props.path;
-        // Convert coords into pixel coords and save
-        this.currPosition = this.spawn = this.props.spawn;
+        this.path = props.enemyData.path;
+        this.tickRate = props.enemyData.tickRate;
+        this.enemyID = props.enemyID;
+        // Enemy invokes this function to tell App gameloop player took damage
+        this.damageTaken = props.enemyData.damageTaken;
+        this.despawnEnemy = props.enemyData.despawnEnemy;
 
         this.state = {
-            spawn : this.spawn,
             index : 0, // which path node I'm on
             destPos : [1, 0], // in coord space
-            styles : {top : 0, left : 0} // position in screen space
+            styles : {top : 73, left : 0}, // position in screen space
+            render : true
         };
     }
 
     componentDidMount() {
 
-        this.timerID = setInterval(() => this.tick(), this.props.tickRate);
-
-        console.log('tickrate:', this.props.tickRate);
+        this.timerID = setInterval(() => this.tick(), this.tickRate);
 
         this.move();
         // let destination = this.calculateDestination(this.state.spawn);
@@ -41,6 +42,16 @@ class Enemy extends Component {
 
     // move to the destination position in state
     move() {
+
+        // If enemy has reached the end
+        if(this.state.index >= this.path.length) {
+            this.damageTaken(this.enemyID);
+            this.despawnEnemy(this.enemyID);
+            this.setState({render : false}); // Remove from DOM
+            clearInterval(this.timerID);
+            return;
+        }
+
         // Calculate the destination based on which index we're on, and post increment for next invocation
         let destination = this.calculateDestination(this.path[this.state.index++]);
 
@@ -73,6 +84,7 @@ class Enemy extends Component {
     }
 
     componentWillUnmount() {
+        console.log('....Goodbye', this.enemyID);
         clearInterval(this.timerID);
     }
 
@@ -84,7 +96,12 @@ class Enemy extends Component {
     }
     // Render this enemy component
     render() {
-        return <div id="enemy" class="squares" style={this.state.styles}></div>;
+        const { render } = this.state;
+        if(render === false) {
+            console.log('NO RENDER!');
+            return null;
+        }
+        return <div id={'enemy' + this.enemyID} class='squares' style={this.state.styles}></div>;
     }
 }
 

@@ -2,6 +2,12 @@ $font-size: 1rem;
 $font-color: black;
 $path-color: rgb(192, 110, 46);
 
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 html {
   font-size: $font-size;
   color: $font-color;

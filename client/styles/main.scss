@@ -7,6 +7,11 @@ html {
   color: $font-color;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+}
+
 .row {
   height: 73px;
   display: flex;

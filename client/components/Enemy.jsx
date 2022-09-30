@@ -111,7 +111,7 @@ class Enemy extends Component {
         const { render } = this.state;
         if(render === false) {
             console.log('NO RENDER!:', this.enemyID);
-            return null;
+            return;
         }
         return <div key={this.enemyID} id={'enemy' + this.enemyID} class='squares' style={this.state.styles}></div>;
     }

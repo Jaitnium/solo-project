@@ -36,6 +36,18 @@ class Enemies extends Component {
         let resultArray = this.state.enemies.filter((enemy) => {
             return !enemyToKill.includes(enemy.props.enemyID);
         });
+
+        // let resultArray = this.state.enemies.filter((enemy) => {
+        //     let res = !enemyToKill.includes(enemy.props.enemyID);
+        //     if(res) {
+        //         return true;
+        //     }
+        //     else {
+        //         console.log(enemy)
+        //     }
+        // });
+
+
         this.setState({enemies : resultArray});
     }
 
@@ -50,6 +62,7 @@ class Enemies extends Component {
             console.log('enemyType:', et[0]);
             let enemyRegex = new RegExp(et[1].passing_condition[0], 'gm');
 
+            console.log('enemyRegex:', enemyRegex);
             if(userInput.match(enemyRegex)) {
                 userEnemyType = et[0];
             }

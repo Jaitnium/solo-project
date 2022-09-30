@@ -3,7 +3,6 @@ import React, { Component } from "react";
 class Input extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentDidMount() {
@@ -27,7 +26,7 @@ class Input extends Component {
         return (
         <form onSubmit={this.handle.bind(this)}>
             <p id="topForm">div: </p>
-            <input id="console_input" type="text" autocomplete="off"></input>
+            <input id="console_input" type="text" autoComplete="off"></input>
             <p id="bottomForm"></p>
         </form>)
     }

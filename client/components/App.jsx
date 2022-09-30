@@ -26,7 +26,7 @@ class App extends Component {
       userInput : '',
       enemyData : {
         tickRate : 1000, // How fast enemies move
-        spawnRate : 2000, // How rapidly enemies spawn
+        spawnRate : 3000, // How rapidly enemies spawn
         path : this.path, 
         damageTaken : this.damageTaken.bind(this),
       },
@@ -82,19 +82,19 @@ function fetchDummy() {
       },
       "bc-red": {
         "text": "Make me red!",
-        "passing_condition": ["background-color:\s*red;?"] 
+        "passing_condition": ["\\s*background-color:\\s*red;?"] 
       },
       "bc-purple": {
         "text": "Make me purple!",
-        "passing_condition": ["background-color:\s*purple;?"] 
+        "passing_condition": ["\\s*background-color:\\s*purple;?"] 
       },
       "bc-yellow": {
         "text": "Make me Yellow!",
-        "passing_condition": ["background-color:\s*yellow;?"] 
+        "passing_condition": ["\\s*background-color:\\s*yellow;?"] 
       },
       "opacity": {
         "text": "I'm rather shy",
-        "passing_condition": ["opacity:\s*[0,1].?[0-9]?;?"] 
+        "passing_condition": ["\\s*opacity:\\s*[0,1].?[0-9]?;?"] 
       }
     }
   )

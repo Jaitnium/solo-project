@@ -1,3 +1,33 @@
+@keyframes bc-red {
+    from {background-color: aqua;}
+    to {background-color: red;}
+}
+
+@keyframes bc-yellow {
+    from {background-color: aqua;}
+    to {background-color: yellow;}
+}
+
+@keyframes bc-purple {
+    from {background-color: aqua;}
+    to {background-color: purple;}
+}
+
+@keyframes opacity {
+    from {opacity: 1;}
+    to {opacity: 0.1;}
+}
+
+@keyframes fade {
+    from {opacity: 0.35;}
+    to {opacity: 1;}
+}
+
+@keyframes circle {
+    from {border-radius: 5%;}
+    to {border-radius: 50%;}
+}
+
 .squares {
     position: absolute;
     left: 0;
@@ -14,4 +44,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    animation: fade;
+    animation-duration: 1s;
 }
+
